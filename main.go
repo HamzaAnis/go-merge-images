@@ -1,7 +1,7 @@
 package main
 
-import "github.com/HamzaAnis/utilities"
+import "merge-files/utilities"
 
 func main() {
-utilities.GetDirectories()
+	utilities.GetFiles("./")
 }
