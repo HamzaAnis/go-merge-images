@@ -1,4 +1,4 @@
-package utilities
+package github.com/go-merge-images/utilities
 
 import (
 	"io/ioutil"
