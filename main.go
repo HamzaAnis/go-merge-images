@@ -1,7 +1,23 @@
 package main
 
-import "merge-files/utilities"
+import (
+	"log"
+	"merge-files/utilities"
+)
 
 func main() {
-	utilities.GetFiles("./")
+	paths, err := utilities.GetDirectories("/Users/macbookpro/Desktop/Programming/test")
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, elem := range paths {
+		println(elem)
+	}
+	filepaths, err := utilities.GetFiles("/Users/macbookpro/Desktop/Programming/test/test1")
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, elem := range filepaths {
+		println(elem)
+	}
 }
