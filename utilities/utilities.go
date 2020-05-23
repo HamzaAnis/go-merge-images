@@ -5,7 +5,15 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+
+	"github.com/HamzaAnis/go-merge-images/models"
 )
+
+func GetProcessedDirectories(path string) []models.Directory {
+	directories := []models.Directory{}
+
+	return directories
+}
 
 func GetFiles(path string) ([]string, error) {
 	files, err := ioutil.ReadDir(path)
