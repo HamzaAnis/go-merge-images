@@ -14,19 +14,17 @@ func main() {
 	// for _, elem := range paths {
 	// 	println(elem)
 	// }
-	filepaths, err := utilities.GetFiles("/Users/macbookpro/Desktop/Programming/test/test1")
-	if err != nil {
-		log.Fatal(err)
-	}
-	for _, elem := range filepaths {
-		println(elem)
-	}
+
 	directories, err := utilities.GetProcessedDirectories("/Users/macbookpro/Desktop/Programming/test")
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	for _, directory := range directories {
-		log.Println(directory)
+		log.Println("For ", directory.DirectoryPath)
+		for _, file := range directory.Files {
+			log.Println(file)
+		}
+		print()
 	}
 }

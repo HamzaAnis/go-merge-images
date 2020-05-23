@@ -1,4 +1,4 @@
-rm go-merge-images
+rm ./test/go-merge-images
 go build
 mv go-merge-images ./test
 cd test
