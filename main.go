@@ -2,10 +2,9 @@ package main
 
 import (
 	"log"
-	"merge-files/utilities"
+
+	"github.com/HamzaAnis/go-merge-files/utilities"
 )
-
-
 
 func main() {
 	paths, err := utilities.GetDirectories("/Users/macbookpro/Desktop/Programming/test")
