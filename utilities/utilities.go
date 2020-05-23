@@ -1,4 +1,4 @@
-package github.com/go-merge-images/utilities
+package utilities
 
 import (
 	"io/ioutil"
@@ -6,12 +6,6 @@ import (
 	"path/filepath"
 	"sort"
 )
-
-// func GetProcessedDirectories(path string) []Directory {
-// 	directories := []Directory{}
-
-// 	return directories
-// }
 
 func GetFiles(path string) ([]string, error) {
 	files, err := ioutil.ReadDir(path)
