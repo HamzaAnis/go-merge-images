@@ -1,5 +1,7 @@
-peckage cmd
+package cmd
 
-func Run(){
+import "fmt"
+
+func Run() {
 	fmt.Println("Running")
 }
