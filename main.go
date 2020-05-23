@@ -5,6 +5,8 @@ import (
 	"merge-files/utilities"
 )
 
+
+
 func main() {
 	paths, err := utilities.GetDirectories("/Users/macbookpro/Desktop/Programming/test")
 	if err != nil {
