@@ -2,6 +2,7 @@ package utilities
 
 import (
 	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 	"sort"
@@ -9,10 +10,26 @@ import (
 	"github.com/HamzaAnis/go-merge-images/models"
 )
 
-func GetProcessedDirectories(path string) []models.Directory {
+func GetProcessedDirectories(path string) ([]models.Directory, error) {
 	directories := []models.Directory{}
+	directoriesPath, err := GetDirectories(path)
+	if err != nil {
+		return nil, err
+	}
+	for _, directory := range directoriesPath {
+		log.Println("Processing ", directory)
 
-	return directories
+		files, err := GetFiles(directory)
+		if err != nil {
+			return nil, err
+		}
+		directory := models.Directory{
+			DirectoryPath: directory,
+			Files:         files,
+		}
+		directories = append(directories, directory)
+	}
+	return directories, nil
 }
 
 func GetFiles(path string) ([]string, error) {

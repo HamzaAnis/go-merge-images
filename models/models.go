@@ -1,6 +1,6 @@
 package models
 
 type Directory struct {
-	directoryPath string
-	files         []string
+	DirectoryPath string
+	Files         []string
 }
