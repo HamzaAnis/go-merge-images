@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/HamzaAnis/go-merge-files/utilities"
+	"github.com/HamzaAnis/go-merge-images/utilities"
 )
 
 func main() {
