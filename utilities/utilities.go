@@ -127,7 +127,7 @@ func SplitParts(number int, chunkSize int) ([]models.Part, error) {
 		return nil, errors.New("image height is less than 16300")
 	}
 	var partsSplit []models.Part
-	total := 0
+	total := -1
 	for number > chunkSize {
 		var part models.Part
 		part.Start = total + 1
