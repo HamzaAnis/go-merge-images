@@ -15,3 +15,8 @@ type Pixel struct {
 	Point image.Point
 	Color color.Color
 }
+
+type Part struct {
+	Start int
+	End   int
+}

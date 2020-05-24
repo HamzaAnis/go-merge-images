@@ -122,18 +122,25 @@ func DeleteFile(path string) error {
 	return nil
 }
 
-func SplitParts(number int, chunkSize int) ([]int, error) {
+func SplitParts(number int, chunkSize int) ([]models.Part, error) {
 	if number < chunkSize {
 		return nil, errors.New("image height is less than 16300")
 	}
-	var partsSplit []int
-	total := chunkSize
+	var partsSplit []models.Part
+	total := 0
 	for number > chunkSize {
-		partsSplit = append(partsSplit, total)
+		var part models.Part
+		part.Start = total + 1
+		part.End = total + chunkSize
+		partsSplit = append(partsSplit, part)
 		number = number - chunkSize
 		total += chunkSize
 	}
-	total -= chunkSize
-	partsSplit = append(partsSplit, total+number)
+
+	var part models.Part
+	part.Start = total + 1
+	part.End = total + number
+
+	partsSplit = append(partsSplit, part)
 	return partsSplit, nil
 }
