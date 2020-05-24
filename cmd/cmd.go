@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/HamzaAnis/go-merge-images/merge"
@@ -46,5 +45,4 @@ func Run() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(utilities.SplitParts(131367, 16300))
 }

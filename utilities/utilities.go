@@ -1,6 +1,7 @@
 package utilities
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -122,6 +123,9 @@ func DeleteFile(path string) error {
 }
 
 func SplitParts(number int, chunkSize int) ([]int, error) {
+	if number < chunkSize {
+		return nil, errors.New("image height is less than 16300")
+	}
 	var partsSplit []int
 	total := chunkSize
 	for number > chunkSize {
