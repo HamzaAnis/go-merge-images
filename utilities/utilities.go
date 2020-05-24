@@ -75,8 +75,8 @@ func GetDirectories(path string) ([]string, error) {
 // confirmations. If the input is not recognized, it will ask again. The function does not return
 // until it gets a valid response from the user. Typically, you should use fmt to print out a question
 // before calling askForConfirmation. E.g. fmt.Println("WARNING: Are you sure? (yes/no)")
-func AskForConfirmation() bool {
-	fmt.Print("Do you want to start the processing (Y/N)?")
+func AskForConfirmation(message string) bool {
+	fmt.Print(message)
 	var response string
 	_, err := fmt.Scanln(&response)
 	if err != nil {
@@ -90,7 +90,7 @@ func AskForConfirmation() bool {
 		return false
 	} else {
 		fmt.Println("Please type yes or no and then press enter:")
-		return AskForConfirmation()
+		return AskForConfirmation(message)
 	}
 }
 
@@ -127,10 +127,10 @@ func SplitParts(number int, chunkSize int) ([]models.Part, error) {
 		return nil, errors.New("image height is less than 16300")
 	}
 	var partsSplit []models.Part
-	total := -1
+	total := 0
 	for number > chunkSize {
 		var part models.Part
-		part.Start = total + 1
+		part.Start = total
 		part.End = total + chunkSize
 		part.YLen = chunkSize
 		partsSplit = append(partsSplit, part)
@@ -139,7 +139,7 @@ func SplitParts(number int, chunkSize int) ([]models.Part, error) {
 	}
 
 	var part models.Part
-	part.Start = total + 1
+	part.Start = total
 	part.End = total + number
 	part.YLen = number
 

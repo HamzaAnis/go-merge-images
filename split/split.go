@@ -15,42 +15,52 @@ import (
 	"github.com/schollz/progressbar/v3"
 )
 
-// Decode image.Image's pixel data into []*Pixel
+// Decode image.Image's pixel data into [][]*Pixel
 func DecodePixelsArrayFromImage(img image.Image, offsetX, offsetY int, fileName string, parts []models.Part) [][]*models.Pixel {
 	log.Println("Decoding", fileName)
 	pixels := [][]*models.Pixel{}
 
 	bar := progressbar.Default(int64(img.Bounds().Max.Y * img.Bounds().Max.X))
-	for j := 0; j < len(parts)-1; j++ {
-		// pixels = append(pixels)
-		pixelsInner := []*models.Pixel{}
-		// println(("Out"))
-		// println(j)
-		// println(len(parts))
-		for y := parts[j].Start; y < parts[j].End; y++ {
-			for x := 0; x <= img.Bounds().Max.X; x++ {
-				p := &models.Pixel{
-					Point: image.Point{x + offsetX, y + offsetY},
-					Color: img.At(x, y),
-				}
-				pixelsInner = append(pixelsInner, p)
-				bar.Add(1)
+	// for j := 0; j < len(parts); j++ {
+	// 	// pixels = append(pixels)
+	// 	pixelsInner := []*models.Pixel{}
+	// 	for y := parts[1].Start; y < parts[1].End; y++ {
+	// 		for x := 0; x <= img.Bounds().Max.X; x++ {
+	// 			p := &models.Pixel{
+	// 				Point: image.Point{x + offsetX, y + offsetY},
+	// 				Color: img.At(x, y),
+	// 			}
+	// 			pixelsInner = append(pixelsInner, p)
+	// 			bar.Add(1)
+	// 		}
+	// 	}
+	// 	pixels = append(pixels, pixelsInner)
+	// }
+	count := 0
+	count1 := 0
+	pixels1 := []*models.Pixel{}
+	for y := 0; y <= img.Bounds().Max.Y; y++ {
+		for x := 0; x <= img.Bounds().Max.X; x++ {
+			p := &models.Pixel{
+				Point: image.Point{x + offsetX, y + offsetY},
+				Color: img.At(x, y),
+			}
+			pixels1 = append(pixels1, p)
+			bar.Add(1)
+
+		}
+		count1++
+		if count < len(parts) {
+			if count1 == parts[count].YLen {
+				println("reset", count)
+				println("Length of pixels", len(pixels1))
+				pixels = append(pixels, pixels1)
+				count1 = 0
+				count++
+				pixels1 = []*models.Pixel{}
 			}
 		}
-		pixels = append(pixels, pixelsInner)
 	}
-	// pixels := []*models.Pixel{}
-	// bar := progressbar.Default(int64(img.Bounds().Max.Y * img.Bounds().Max.X))
-	// for y := 0; y <= img.Bounds().Max.Y; y++ {
-	// 	for x := 0; x <= img.Bounds().Max.X; x++ {
-	// 		p := &models.Pixel{
-	// 			Point: image.Point{x + offsetX, y + offsetY},
-	// 			Color: img.At(x, y),
-	// 		}
-	// 		pixels = append(pixels, p)
-	// 		bar.Add(1)
-	// 	}
-	// }
 	return pixels
 }
 func SplitImage(path string) error {
@@ -89,7 +99,7 @@ func SplitImage(path string) error {
 		fileName := fmt.Sprintf("%s%d.png", "spilt", i+1)
 		splitPath := filepath.Join(d, fileName)
 		log.Println("Writing pixels to", splitPath)
-		for _, px := range pixels[i] {
+		for _, px := range pixels[0] {
 			bar.Add(1)
 			finalImages[i].Set(
 				px.Point.X,

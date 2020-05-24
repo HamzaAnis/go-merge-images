@@ -28,7 +28,21 @@ func Run() {
 	for _, elem := range paths {
 		log.Println(elem)
 	}
-	if utilities.AskForConfirmation() {
+	if utilities.AskForConfirmation("Do you want to start the merging (Y/N)?") {
+		directories, err := utilities.GetProcessedDirectories("/Users/macbookpro/Desktop/Programming/test")
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		for _, directory := range directories {
+			err = merge.MergeImages(directory)
+			if err != nil {
+				log.Fatal(err)
+			}
+		}
+	}
+
+	if utilities.AskForConfirmation("Do you want to start the splitting (Y/N)?") {
 		directories, err := utilities.GetProcessedDirectories("/Users/macbookpro/Desktop/Programming/test")
 		if err != nil {
 			log.Fatal(err)
