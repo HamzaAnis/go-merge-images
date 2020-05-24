@@ -110,3 +110,13 @@ func posString(slice []string, element string) int {
 func containsString(slice []string, element string) bool {
 	return !(posString(slice, element) == -1)
 }
+
+func DeleteFile(path string) error {
+	log.Println("Deleting", path)
+	err := os.Remove(path)
+
+	if err != nil {
+		return err
+	}
+	return nil
+}

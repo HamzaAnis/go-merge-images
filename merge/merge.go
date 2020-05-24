@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 
 	"github.com/HamzaAnis/go-merge-images/models"
+	"github.com/HamzaAnis/go-merge-images/utilities"
 	"github.com/schollz/progressbar/v3"
 )
 
@@ -117,5 +118,11 @@ func MergeImages(directory models.Directory) error {
 		return err
 	}
 	log.Println("Merge image saved to ", mergePath)
+	for _, file := range files {
+		utilities.DeleteFile(file)
+		if err != nil {
+			return err
+		}
+	}
 	return nil
 }
