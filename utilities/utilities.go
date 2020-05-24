@@ -132,6 +132,7 @@ func SplitParts(number int, chunkSize int) ([]models.Part, error) {
 		var part models.Part
 		part.Start = total + 1
 		part.End = total + chunkSize
+		part.YLen = chunkSize
 		partsSplit = append(partsSplit, part)
 		number = number - chunkSize
 		total += chunkSize
@@ -140,6 +141,7 @@ func SplitParts(number int, chunkSize int) ([]models.Part, error) {
 	var part models.Part
 	part.Start = total + 1
 	part.End = total + number
+	part.YLen = number
 
 	partsSplit = append(partsSplit, part)
 	return partsSplit, nil

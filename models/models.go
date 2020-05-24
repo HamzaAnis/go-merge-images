@@ -19,4 +19,5 @@ type Pixel struct {
 type Part struct {
 	Start int
 	End   int
+	YLen  int
 }

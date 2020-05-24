@@ -44,7 +44,7 @@ func SplitImage(path string) error {
 		return err
 	}
 	for _, part := range coordinates {
-		println(part.Start, " ", part.End)
+		println(part.Start, " ", part.End, " ", part.YLen)
 	}
 	// pixels := merge.DecodePixelsFromImage(img, 0, 0, path)
 	// println("Length is", len(pixels))
