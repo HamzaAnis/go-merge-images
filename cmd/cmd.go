@@ -23,20 +23,21 @@ func Run() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Println("All the subdirectories found")
 	for _, elem := range paths {
-		println(elem)
+		log.Println(elem)
 	}
-
-	directories, err := utilities.GetProcessedDirectories("/Users/macbookpro/Desktop/Programming/test")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	for _, directory := range directories {
-		log.Println("Processing ", directory.DirectoryPath)
-		err = merge.MergeImages(directory)
+	if utilities.AskForConfirmation() {
+		directories, err := utilities.GetProcessedDirectories("/Users/macbookpro/Desktop/Programming/test")
 		if err != nil {
 			log.Fatal(err)
+		}
+
+		for _, directory := range directories {
+			err = merge.MergeImages(directory)
+			if err != nil {
+				log.Fatal(err)
+			}
 		}
 	}
 }
