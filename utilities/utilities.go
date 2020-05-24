@@ -38,15 +38,11 @@ func GetFiles(path string) ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
-	currentPath, err := os.Getwd()
-	if err != nil {
-		return nil, err
-	}
 
 	fileNames := []string{}
 	for _, f := range files {
 		if !f.IsDir() && strings.Contains(f.Name(), ".png") {
-			fileNames = append(fileNames, filepath.Join(currentPath, f.Name()))
+			fileNames = append(fileNames, filepath.Join(path, f.Name()))
 		}
 	}
 	sort.Sort(sort.StringSlice(fileNames))
