@@ -44,7 +44,7 @@ func MergeImages(directory models.Directory) error {
 	filesD := directory.Files
 	var files []string
 	files = append(files, filesD[len(filesD)-1])
-	for i := 0; i < len(filesD)-2; i++ {
+	for i := 0; i < len(filesD)-1; i++ {
 		files = append(files, filesD[i])
 	}
 
