@@ -89,7 +89,7 @@ func MergeImages(directory models.Directory) error {
 		pixelSum = append(pixelSum, pixel)
 	}
 	mergePath := filepath.Join(directory.DirectoryPath, "merged.png")
-	log.Println("Writing pixels to merge.png")
+	log.Println("Writing pixels to merged.png")
 	bar := progressbar.Default(int64(len(pixelSum)))
 
 	newRect := image.Rectangle{
