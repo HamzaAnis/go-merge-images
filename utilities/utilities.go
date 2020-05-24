@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strings"
 
 	"github.com/HamzaAnis/go-merge-images/models"
 )
@@ -44,9 +45,8 @@ func GetFiles(path string) ([]string, error) {
 
 	fileNames := []string{}
 	for _, f := range files {
-		if !f.IsDir() {
+		if !f.IsDir() && strings.Contains(f.Name(), ".png") {
 			fileNames = append(fileNames, filepath.Join(currentPath, f.Name()))
-			// fileNames = append(fileNames, f.Name())
 		}
 	}
 	sort.Sort(sort.StringSlice(fileNames))
