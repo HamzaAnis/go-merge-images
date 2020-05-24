@@ -21,11 +21,15 @@ func Run() {
 		log.Fatal(err)
 	}
 
-	for _, directory := range directories {
-		log.Println("Processing ", directory.DirectoryPath)
-		err := merge.MergeImages(directory)
-		if err != nil {
-			log.Fatal(err)
-		}
+	// for _, directory := range directories {
+	// 	log.Println("Processing ", directory.DirectoryPath)
+	// 	err := merge.MergeImages(directory)
+	// 	if err != nil {
+	// 		log.Fatal(err)
+	// 	}
+	// }
+	err = merge.MergeImages(directories[0])
+	if err != nil {
+		log.Fatal(err)
 	}
 }
