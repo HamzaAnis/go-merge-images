@@ -3,6 +3,7 @@ package cmd
 import (
 	"log"
 
+	"github.com/HamzaAnis/go-merge-images/merge"
 	"github.com/HamzaAnis/go-merge-images/utilities"
 )
 
@@ -21,10 +22,10 @@ func Run() {
 	}
 
 	for _, directory := range directories {
-		log.Println("For ", directory.DirectoryPath)
-		for _, file := range directory.Files {
-			log.Println(file)
+		log.Println("Processing ", directory.DirectoryPath)
+		err := merge.MergeImages(directory)
+		if err != nil {
+			log.Fatal(err)
 		}
-		print()
 	}
 }
