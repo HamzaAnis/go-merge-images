@@ -1,9 +1,11 @@
 package cmd
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/HamzaAnis/go-merge-images/merge"
+	"github.com/HamzaAnis/go-merge-images/split"
 	"github.com/HamzaAnis/go-merge-images/utilities"
 )
 
@@ -40,4 +42,9 @@ func Run() {
 			}
 		}
 	}
+	err = split.SplitImage("/Users/macbookpro/Desktop/Programming/go-merge-images/test/test1/merged.png")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(utilities.SplitParts(131367, 16300))
 }

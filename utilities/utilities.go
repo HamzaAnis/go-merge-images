@@ -120,3 +120,16 @@ func DeleteFile(path string) error {
 	}
 	return nil
 }
+
+func SplitParts(number int, chunkSize int) ([]int, error) {
+	var partsSplit []int
+	total := chunkSize
+	for number > chunkSize {
+		partsSplit = append(partsSplit, total)
+		number = number - chunkSize
+		total += chunkSize
+	}
+	total -= chunkSize
+	partsSplit = append(partsSplit, total+number)
+	return partsSplit, nil
+}
