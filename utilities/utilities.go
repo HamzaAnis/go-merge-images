@@ -75,6 +75,7 @@ func GetDirectories(path string) ([]string, error) {
 // until it gets a valid response from the user. Typically, you should use fmt to print out a question
 // before calling askForConfirmation. E.g. fmt.Println("WARNING: Are you sure? (yes/no)")
 func AskForConfirmation() bool {
+	fmt.Print("Do you want to start the processing (Y/N)?")
 	var response string
 	_, err := fmt.Scanln(&response)
 	if err != nil {
